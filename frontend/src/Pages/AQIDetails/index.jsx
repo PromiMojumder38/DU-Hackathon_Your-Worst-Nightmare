@@ -14,7 +14,7 @@ function AQI() {
   const [isFirstModalVisible, setIsFirstModalVisible] = useState(false);
   const [isSecondModalVisible, setIsSecondModalVisible] = useState(false);
   const [cityData, setCityData] = useState(null);
-  const keyy = "69ed27f9-a5ec-4431-8dd5-414e76b35efa";
+  const keyy = "a19773ac-72b7-47aa-93ce-e6b37a5d0547";
 
   useEffect(() => {
     axios
@@ -90,24 +90,7 @@ function AQI() {
     },
   ];
 
-  const columns2 = [
-    {
-      title: "Countries",
-      dataIndex: "country",
-      width: 50,
-    },
-    {
-      title: "See More",
-      render: (text, record) => (
-        <div className="autorickshawButton">
-          <Button type="primary" onClick={() => fetchStatesForCountry(record.country)}>
-            See More
-          </Button>
-        </div>
-      ),
-      width: 50,
-    },
-  ];
+
 
   return (
     <div className="App">
@@ -187,15 +170,7 @@ function AQI() {
             
             )}
           </Modal>
-          <Table
-            className="TableAQI"
-            loading={loading}
-            columns={columns2}
-            dataSource={countries}
-            pagination={{
-              pageSize: 20,
-            }}
-          ></Table>
+          
         </div>
       </div>
     </div>
