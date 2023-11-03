@@ -1,11 +1,13 @@
 // App.js
 
-import React, { useState } from 'react';
-import CountryCodeLookup from './CountryCodeLookUp';
-import DataTables from './DataTables';
+import React, { useState } from "react";
+import CountryCodeLookup from "./CountryCodeLookUp";
+import DataTables from "./DataTables";
+import { useParams } from "react-router-dom";
 
 function App() {
-  const [countryCode, setCountryCode] = useState('');
+  const { countryName } = useParams();
+  const [countryCode, setCountryCode] = useState("");
 
   const handleCountryCodeChange = (newCountryCode) => {
     setCountryCode(newCountryCode);
@@ -14,8 +16,10 @@ function App() {
   return (
     <div>
       <h1>World Bank Data</h1>
-      <CountryCodeLookup onCountryCodeChange={handleCountryCodeChange} />
-      {countryCode && <DataTables countryCode={countryCode} />}
+      <CountryCodeLookup onCountryCodeChange={handleCountryCodeChange} countryName={countryName} />
+      {countryCode && (
+        <DataTables countryCode={countryCode} countryName={countryName} />
+      )}
     </div>
   );
 }
