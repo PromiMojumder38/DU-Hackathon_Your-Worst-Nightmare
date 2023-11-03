@@ -40,10 +40,10 @@ function Home() {
 
         <div className={styles["welcome-text"]}>
           <h1>
-            <span></span>
+            <span>Welcome</span>
           </h1>
           <h2>
-            <span></span>  <span></span>
+            <span>AtmosSense</span>  <span></span>
           </h2>
 
           

@@ -11,6 +11,7 @@ import AQI from "./Pages/AQIDetails/index";
 
 
 
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         
         <Route path="/aqi" element={<AQI />}></Route>
+        
     
       </Routes>
     </BrowserRouter>
