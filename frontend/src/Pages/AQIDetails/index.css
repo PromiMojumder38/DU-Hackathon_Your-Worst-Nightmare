@@ -167,3 +167,27 @@
 
 
 }
+.TableOwner {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px;
+}
+
+.TableOwner .ant-table-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.dataContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dataColumn {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 5px;
+}
+

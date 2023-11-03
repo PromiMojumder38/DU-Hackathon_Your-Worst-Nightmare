@@ -1,7 +1,6 @@
 import { Table, Button, Modal } from "antd"; // Import Button from Ant Design
 import { useEffect, useState } from "react";
-import AppHeader from "../../components/AppHeader";
-import SideMenu from "../../components/SideMenu";
+
 import "./index.css";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
@@ -170,9 +169,9 @@ const createSummaryData = (payments) => {
   
   return (
     <div className="App">
-      <AppHeader />
+     
       <div className="SideMenuAndPageContent">
-        <SideMenu></SideMenu>
+      
         <div className="SetPageContent">
           <div className="PageContents">
             <h1 className="PageHeader">

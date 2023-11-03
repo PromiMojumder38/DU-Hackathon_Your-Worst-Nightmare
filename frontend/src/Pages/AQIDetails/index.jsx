@@ -1,9 +1,6 @@
 import { Table, Button, Modal } from "antd";
 import { useEffect, useState } from "react";
-import AppHeader from "../../components/AppHeader";
-import SideMenu from "../../components/SideMenu";
 import { UserOutlined } from "@ant-design/icons";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Owner() {
@@ -13,9 +10,10 @@ function Owner() {
   const [cities, setCities] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [selectedState, setSelectedState] = useState(null);
+  const [selectedCity, setSelectedCity] = useState(null);
   const [isFirstModalVisible, setIsFirstModalVisible] = useState(false);
   const [isSecondModalVisible, setIsSecondModalVisible] = useState(false);
-  const navigate = useNavigate();
+  const [cityData, setCityData] = useState(null);
 
   useEffect(() => {
     axios
@@ -44,8 +42,6 @@ function Owner() {
   };
 
   const fetchCitiesForState = (state) => {
-    console.log(state);
-    console.log(selectedCountry);
     setSelectedState(state);
     axios
       .get(
@@ -54,6 +50,20 @@ function Owner() {
       .then((response) => {
         setCities(response.data.data);
         setIsSecondModalVisible(true);
+      })
+      .catch((error) => {
+        console.error("Error fetching city data: ", error);
+      });
+  };
+
+  const fetchCityData = (city) => {
+    setSelectedCity(city);
+    axios
+      .get(
+        `http://api.airvisual.com/v2/city?city=${city}&state=${selectedState}&country=${selectedCountry}&key=73f73ad3-35b3-47c4-84a0-cf049ff62000`
+      )
+      .then((response) => {
+        setCityData(response.data.data);
       })
       .catch((error) => {
         console.error("Error fetching city data: ", error);
@@ -81,9 +91,7 @@ function Owner() {
 
   return (
     <div className="App">
-      <AppHeader />
       <div className="SideMenuAndPageContent">
-        <SideMenu></SideMenu>
         <div className="PageContent">
           <h1 className="PageHeader">
             <UserOutlined className="icon" />
@@ -114,16 +122,50 @@ function Owner() {
             ))}
           </Modal>
           <Modal
-            title={`Cities in ${selectedState}, ${selectedCountry}`}
-            visible={isSecondModalVisible}
+  title={`Cities in ${selectedState}, ${selectedCountry}`}
+  visible={isSecondModalVisible}
+  onOk={() => setIsSecondModalVisible(false)}
+  onCancel={() => setIsSecondModalVisible(false)}
+>
+  {cities.map((city) => (
+    <div key={city.city}>
+      {city.city}
+      <Button type="primary" onClick={() => fetchCityData(city.city)}>
+        See More
+      </Button>
+    </div>
+  ))}
+</Modal>
+
+          <Modal
+            title={`City: ${selectedCity}, ${selectedState}, ${selectedCountry}`}
+            visible={cityData !== null}
             onOk={() => setIsSecondModalVisible(false)}
             onCancel={() => setIsSecondModalVisible(false)}
           >
-            {cities.map((city) => (
-              <div key={city.city}>
-                {city.city}
+            {cityData && (
+              <div className="dataContainer">
+              <div className="dataColumn">
+                <p>Pollution Data:</p>
+                <p>Timestamp: {cityData.current.pollution.ts}</p>
+                <p>AQI US: {cityData.current.pollution.aqius}</p>
+                <p>Main US: {cityData.current.pollution.mainus}</p>
+                <p>AQI CN: {cityData.current.pollution.aqicn}</p>
+                <p>Main CN: {cityData.current.pollution.maincn}</p>
               </div>
-            ))}
+              <div className="dataColumn">
+                <p>Weather Data:</p>
+                <p>Timestamp: {cityData.current.weather.ts}</p>
+                <p>Temperature (°C): {cityData.current.weather.tp}</p>
+                <p>Pressure (hPa): {cityData.current.weather.pr}</p>
+                <p>Humidity : {cityData.current.weather.hu} %</p>
+                <p>Wind Speed : {cityData.current.weather.ws} m/s</p>
+                <p>Wind Direction (°): {cityData.current.weather.wd}</p>
+                <p>Icon: {cityData.current.weather.ic}</p>
+              </div>
+            </div>
+            
+            )}
           </Modal>
         </div>
       </div>
