@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./styles.css";
+
 
 const cityCoordinates = [
   { name: "Lahore", latitude: 31.560078, longitude: 74.33589 },
@@ -15,6 +17,7 @@ const cityCoordinates = [
 
 const DataFetcher = () => {
   const [cityData, setCityData] = useState([]);
+  const [filteredCityData, setFilteredCityData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,16 +62,34 @@ const DataFetcher = () => {
       }
 
       setCityData(updatedCityData);
+      setFilteredCityData(updatedCityData); // Initialize the filtered data with all cities.
     };
 
     fetchData();
   }, []);
 
+  const handleCitySearch = (searchTerm) => {
+    if (searchTerm === "") {
+      setFilteredCityData(cityData); // Show all cities if the search term is empty.
+    } else {
+      // Filter the cities based on the search term.
+      const filteredCities = cityData.filter((city) =>
+        city.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredCityData(filteredCities);
+    }
+  };
+
   return (
     <div>
       <h2>City Air Quality Data</h2>
+      <input
+        type="text"
+        placeholder="Search for a city..."
+        onChange={(e) => handleCitySearch(e.target.value)}
+      />
       <ul>
-        {cityData.map((cityInfo) => (
+        {filteredCityData.map((cityInfo) => (
           <li key={cityInfo.name}>
             <strong>City Name:</strong> {cityInfo.name}
             <br />
