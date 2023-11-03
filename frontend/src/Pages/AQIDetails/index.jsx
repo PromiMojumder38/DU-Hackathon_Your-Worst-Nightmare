@@ -17,7 +17,7 @@ function AQI() {
   const [isFirstModalVisible, setIsFirstModalVisible] = useState(false);
   const [isSecondModalVisible, setIsSecondModalVisible] = useState(false);
   const [cityData, setCityData] = useState(null);
-  const keyy = "a19773ac-72b7-47aa-93ce-e6b37a5d0547";
+  const keyy = "d63e1a5b-d327-4aa6-bfff-2062f4c097f9";
 
   useEffect(() => {
     axios

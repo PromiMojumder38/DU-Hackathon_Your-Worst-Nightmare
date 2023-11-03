@@ -23,7 +23,7 @@ function Home() {
             <li>
               <a href="/home">Contact</a>
             </li>
-{/* 
+            {/* 
             <li>
               <Link to="/login" className={styles["a"]}>
                 Login
@@ -32,7 +32,7 @@ function Home() {
 
             <li>
               <Link to="/aqi" className={styles["ap"]}>
-                See List 
+                See List
               </Link>
             </li>
           </ul>
@@ -40,13 +40,11 @@ function Home() {
 
         <div className={styles["welcome-text"]}>
           <h1>
-            <span>Welcome</span>
+            <span>AtmosSense </span>
           </h1>
           <h2>
-            <span>AtmosSense</span>  <span></span>
+            Breathe <span>Informed</span> Live <span> Better</span>
           </h2>
-
-          
         </div>
       </header>
     </div>
