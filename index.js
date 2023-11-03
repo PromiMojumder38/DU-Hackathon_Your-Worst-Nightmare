@@ -1,8 +1,8 @@
 const axios = require("axios");
 
 // Define your API key and base URL
-const apiKey = "c6bea919-62f7-48ba-bf16-c8da52476c77";
-const baseURL = "http://api.airvisual.com/v2";
+const apiKey = "";
+const baseURL = "https://api.airvisual.com/v2";
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -60,7 +60,7 @@ async function getAllCountries() {
     const countries = response.data.data;
     console.log("All countries:", countries);
     for (const country of countries) {
-      await getStatesForCountry(country.country);
+      await getStatesForCountry("country.country");
       await sleep(10000); // Sleep for 10 seconds between country API calls
     }
   } catch (error) {
