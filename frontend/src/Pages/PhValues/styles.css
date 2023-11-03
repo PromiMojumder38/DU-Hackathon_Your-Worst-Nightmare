@@ -65,80 +65,36 @@ div {
     font-weight: bold;
     color: #555;
   }
-  /* Style for the modal backdrop */
-.modal-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-/* Style for the modal content */
-.city-info-modal {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  max-width: 400px;
-  width: 100%;
-}
 
 /* Style for the close button in the modal */
 .close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  background: none;
+  background-color: #ff5733;
+  color: #fff;
   border: none;
+  padding: 8px 16px;
+  border-radius: 50%; /* Make it a circle */
   cursor: pointer;
-  color: #888;
+  font-size: 18px; /* Adjust the size */
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  transform: translate(50%, -50%);
 }
 
-/* Style for the city name in the modal */
-.city-info h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #333;
-}
-
-/* Style for the modal content paragraphs */
-.city-info p {
-  font-size: 16px;
-  margin-bottom: 10px;
-  color: #555;
-}
-
-/* Style for the pollutants list in the modal */
-.city-info ul {
-  list-style: none;
-  padding: 0;
-}
-
-/* Style for pollutants list items in the modal */
-.city-info li {
-  font-size: 16px;
-  color: #555;
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
-}
-
-/* Style for the last pollutants list item in the modal */
-.city-info li:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-/* Style for the pollutants list strong elements in the modal */
-.city-info li strong {
-  font-weight: bold;
-  color: #333;
+/* styles.css */
+/* styles.css */
+.popup {
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  padding: 8px; /* Reduce the padding */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 400px;
+  height: 400px; /* Adjust the maximum height */
+  text-align: left;
+  overflow-y: auto;
 }
