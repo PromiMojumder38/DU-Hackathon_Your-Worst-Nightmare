@@ -1,12 +1,15 @@
 .home {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(./Images/back.jpg);
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(./Images/home.png);
     height: 100vh;
+    background-repeat: no-repeat; /* Prevent the background from repeating */
+    background-attachment: fixed; /* Make the background image fixed */
     -webkit-background-size: cover;
     background-size: cover;
     background-position: center center;
     position: relative;
 }
+
 
 .wrapper {
     width: 90%;

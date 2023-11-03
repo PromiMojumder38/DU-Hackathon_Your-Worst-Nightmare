@@ -12,8 +12,7 @@ import Ph from "./Pages/PhValues/index";
 
 import Map from "./Pages/map/index";
 
-
-
+import Map from "./Pages/map/index";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -22,7 +21,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        
+
         <Route path="/aqi" element={<AQI />}></Route>
         <Route path="/top" element={<Top />}></Route>
         <Route path="/ph" element={<Ph />}></Route>
