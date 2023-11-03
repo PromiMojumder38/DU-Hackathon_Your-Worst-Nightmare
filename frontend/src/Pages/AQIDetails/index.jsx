@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import axios from "axios";
 
-function Owner() {
+function AQI() {
   const [loading, setLoading] = useState(false);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -17,7 +17,7 @@ function Owner() {
 
   useEffect(() => {
     axios
-      .get("http://api.airvisual.com/v2/countries?key=73f73ad3-35b3-47c4-84a0-cf049ff62000")
+      .get(`https://api.airvisual.com/v2/countries?key=${keyy}`)
       .then((response) => {
         setCountries(response.data.data);
         setLoading(false);
@@ -31,7 +31,7 @@ function Owner() {
   const fetchStatesForCountry = (country) => {
     setSelectedCountry(country);
     axios
-      .get(`http://api.airvisual.com/v2/states?country=${country}&key=73f73ad3-35b3-47c4-84a0-cf049ff62000`)
+      .get(`http://api.airvisual.com/v2/states?country=${country}&key=${keyy}`)
       .then((response) => {
         setStates(response.data.data);
         setIsFirstModalVisible(true);
@@ -45,7 +45,7 @@ function Owner() {
     setSelectedState(state);
     axios
       .get(
-        `http://api.airvisual.com/v2/cities?state=${state}&country=${selectedCountry}&key=73f73ad3-35b3-47c4-84a0-cf049ff62000`
+        `http://api.airvisual.com/v2/cities?state=${state}&country=${selectedCountry}&key=${keyy}`
       )
       .then((response) => {
         setCities(response.data.data);
@@ -60,7 +60,7 @@ function Owner() {
     setSelectedCity(city);
     axios
       .get(
-        `http://api.airvisual.com/v2/city?city=${city}&state=${selectedState}&country=${selectedCountry}&key=73f73ad3-35b3-47c4-84a0-cf049ff62000`
+        `http://api.airvisual.com/v2/city?city=${city}&state=${selectedState}&country=${selectedCountry}&key=${keyy}`
       )
       .then((response) => {
         setCityData(response.data.data);
@@ -98,7 +98,7 @@ function Owner() {
             List of Countries
           </h1>
           <Table
-            className="TableOwner"
+            className="TableAQI"
             loading={loading}
             columns={columns}
             dataSource={countries}
@@ -173,4 +173,4 @@ function Owner() {
   );
 }
 
-export default Owner;
+export default AQI;

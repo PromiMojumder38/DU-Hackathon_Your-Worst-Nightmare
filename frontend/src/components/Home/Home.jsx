@@ -31,7 +31,7 @@ function Home() {
             </li> */}
 
             <li>
-              <Link to="/owner" className={styles["ap"]}>
+              <Link to="/aqi" className={styles["ap"]}>
                 See List 
               </Link>
             </li>
@@ -40,10 +40,10 @@ function Home() {
 
         <div className={styles["welcome-text"]}>
           <h1>
-            <span>App</span>
+            <span></span>
           </h1>
           <h2>
-            <span>Name</span> jani <span>na</span>
+            <span></span>  <span></span>
           </h2>
 
           

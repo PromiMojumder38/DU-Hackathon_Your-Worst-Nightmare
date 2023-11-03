@@ -1,8 +1,8 @@
 const axios = require("axios");
 
 // Define your API key and base URL
-const apiKey = "";
-const baseURL = "https://api.airvisual.com/v2";
+const apiKey = "c6bea919-62f7-48ba-bf16-c8da52476c77";
+const baseURL = "http://api.airvisual.com/v2";
 
 async function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -31,7 +31,7 @@ async function getCitiesForStateAndCountry(stateName, countryName) {
     console.log(`Cities for ${stateName}, ${countryName}:`, cities);
     for (const city of cities) {
       await getAirQualityData(city.city, stateName, countryName);
-      await sleep(10000); // Sleep for 10 seconds between city API calls
+      await sleep(15000); // Sleep for 10 seconds between city API calls
     }
   } catch (error) {
     console.error(`Error fetching cities for ${stateName}, ${countryName}: ${error}`);
@@ -46,7 +46,7 @@ async function getStatesForCountry(countryName) {
     console.log(`States for ${countryName}:`, states);
     for (const state of states) {
       await getCitiesForStateAndCountry(state.state, countryName);
-      await sleep(10000); // Sleep for 10 seconds between state API calls
+      await sleep(15000); // Sleep for 10 seconds between state API calls
     }
   } catch (error) {
     console.error(`Error fetching states for ${countryName}: ${error}`);
@@ -59,10 +59,10 @@ async function getAllCountries() {
     const response = await axios.get(countryListURL);
     const countries = response.data.data;
     console.log("All countries:", countries);
-    for (const country of countries) {
-      await getStatesForCountry("country.country");
-      await sleep(10000); // Sleep for 10 seconds between country API calls
-    }
+    // for (const country of countries) {
+    //   await getStatesForCountry("country.country");
+    //   await sleep(15000); // Sleep for 10 seconds between country API calls
+    // }
   } catch (error) {
     console.error("Error fetching countries:", error);
   }

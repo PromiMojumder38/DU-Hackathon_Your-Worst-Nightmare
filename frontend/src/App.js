@@ -6,9 +6,9 @@ import Home from "./components/Home/Home";
 // import Create from "./components/CRUD/CreateStudent";
 // import Update from "./components/CRUD/UpdateStudent";
 
-import Owner from "./Pages/AQIDetails/index";
+import AQI from "./Pages/AQIDetails/index";
 
-import MoneyShow from "./Pages/MoneyShow/index";
+
 
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -19,8 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         
-        <Route path="/owner" element={<Owner />}></Route>
-        <Route path="/moneyShow" element={<MoneyShow />} />
+        <Route path="/aqi" element={<AQI />}></Route>
+    
       </Routes>
     </BrowserRouter>
   );
