@@ -1,0 +1,153 @@
+/* Remove unused global styles */
+:root {
+    --linear-grad: linear-gradient(to right, #141E30, #243B55);
+    --grad-clr1: #141E30;
+    --grad-clr2: #243B55;
+}
+
+/* CSS for the Schedule component */
+.scheduleForm {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+.scheduleInfield {
+    position: relative;
+    margin: 9px 4px;
+    width: 100%;
+    color: #b3b2b2;
+}
+
+.scheduleInfield input {
+    border: #030303;
+  
+    width: 100%;
+    padding: 14px 8px;
+    background-color: #e4e0e0;
+    border: none;
+    outline: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.scheduleInput::placeholder {
+   
+    color: #9c9c9c;
+    font-size: 12px;
+    padding: 5px;
+    
+}
+
+
+
+
+
+
+
+.scheduleInput[type="date"]::-webkit-calendar-picker-indicator,
+.scheduleInput[type="time"]::-webkit-calendar-picker-indicator {
+    color: #a5a3a3;
+}
+.gg{
+    background-color: #050505;
+  }
+.scheduleButton{
+    border: none;
+    border-radius: 5px;
+    width: 100px;
+    background: rgb(17, 165, 4);
+    color: #fff;
+    margin-top: 30px;
+    margin-left: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 15px 35px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.scheduleError {
+    font-size: 12px;
+    color: rgba(255, 0, 0, 0.781);
+    padding-left: 3px;
+}
+
+.scheduleParagraph {
+    font-size: 16px;
+    color: #030303;
+    font-weight: 500;
+    margin-bottom: 7px;
+    margin-top: 2px;
+    margin-left: 7px;
+}
+
+.first {
+    color: rgb(245, 242, 242) !important;
+}
+.scheduleSelect {
+    border: #030303;
+    color: #7c7979;
+    width: 100%;
+    padding: 14px 8px;
+    background-color: #e4e0e0;
+    border: none;
+    outline: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    border-radius: 5px;
+}
+
+
+.scheduleSelect:focus {
+    color: rgb(20, 20, 20);
+}
+
+.scheduleSelect:focus~label {
+    width: 100%;
+    color: rgb(2, 2, 2);
+}
+
+.scheduleSelect:focus~label {
+    width: 100%;
+    color: black;
+}
+
+.iconShow{
+    padding-right: 5px;
+    font-size: 16px;
+}
+
+
+
+
+/* Media query for larger screens */
+@media (min-width: 1400px) {
+    .scheduleContainer {
+        width: 900px;
+        height: 84vh;
+    }
+
+    .scheduleOverlayPanel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0px 40px;
+        text-align: center;
+        height: 100%;
+        width: 410px;
+        transition: 0.6s ease-in-out;
+    }
+}
