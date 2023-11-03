@@ -1,109 +1,144 @@
-/* styles.css */
-.app-container {
+/* Style for the main container */
+div {
     text-align: center;
-    font-family: Arial, sans-serif;
-    margin: 0 auto;
-    width: 80%;
-    max-width: 800px;
   }
   
-  .app-header {
-    background-color: #007bff;
-    color: #fff;
-    padding: 1rem;
+  /* Style for the heading */
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
   }
   
-  h1 {
-    margin: 0;
-  }
-  
-  .search-container {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-  }
-  
+  /* Style for the search input */
   input[type="text"] {
     width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
   }
   
-  .city-list {
+  /* Style for the city list */
+  ul {
     list-style: none;
     padding: 0;
   }
   
-  .city-list li {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    margin: 0.5rem 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .city-list li:hover {
-    background-color: #e0e0e0;
-  }
-  
-  /* Add these styles to your existing CSS */
-
-.city-info-modal {
-    background-color: rgba(0, 0, 0, 0.6);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s ease;
-  }
-  
-  .city-info-modal.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
-  .city-info {
-    background-color: #fff;
-    padding: 2rem;
-    border: 1px solid #ddd;
+  /* Style for each city item */
+  li {
+    background-color: #f7f7f7;
+    padding: 20px;
+    margin: 10px 0;
     border-radius: 10px;
-    max-width: 80%;
-    max-height: 80%;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    transition: background-color 0.3s ease;
   }
   
-  .close-button {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.2rem 0.5rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 50%;
+  /* Hover effect for city items */
+  li:hover {
+    background-color: #e7e7e7;
   }
   
-  .close-button:hover {
-    background-color: #0056b3;
+  /* Style for strong elements within list items */
+  li strong {
+    font-weight: bold;
+    color: #333;
   }
   
-  /* Transition effect for the modal content */
-  .city-info {
-    transform: scale(0.7);
-    transition: transform 0.3s ease;
+  /* Style for the pollutants list */
+  ul ul {
+    margin: 10px 0;
+    padding: 0;
   }
   
-  .city-info.active {
-    transform: scale(1);
+  /* Style for pollutants list items */
+  ul li {
+    margin: 5px 0;
+    font-weight: normal;
   }
   
+  /* Style for pollutants list strong elements */
+  ul li strong {
+    font-weight: bold;
+    color: #555;
+  }
+  /* Style for the modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Style for the modal content */
+.city-info-modal {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Style for the close button in the modal */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #888;
+}
+
+/* Style for the city name in the modal */
+.city-info h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Style for the modal content paragraphs */
+.city-info p {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+/* Style for the pollutants list in the modal */
+.city-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Style for pollutants list items in the modal */
+.city-info li {
+  font-size: 16px;
+  color: #555;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0;
+}
+
+/* Style for the last pollutants list item in the modal */
+.city-info li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Style for the pollutants list strong elements in the modal */
+.city-info li strong {
+  font-weight: bold;
+  color: #333;
+}

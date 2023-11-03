@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./styles.css";
+import Map from "../map/Map.jsx"
 
 
 const cityCoordinates = [
@@ -79,7 +80,8 @@ const DataFetcher = () => {
       setFilteredCityData(filteredCities);
     }
   };
-
+  const latitude = 23.777176;
+  const longitude = 90.399452;
   return (
     <div>
       <h2>City Air Quality Data</h2>
@@ -107,8 +109,10 @@ const DataFetcher = () => {
                 </li>
               ))}
             </ul>
+            <Map lat={latitude} lng={longitude} />
           </li>
         ))}
+        
       </ul>
     </div>
   );
