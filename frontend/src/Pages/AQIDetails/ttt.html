@@ -1,0 +1,28 @@
+<div id="map" style="height: 380px" style="position: relative" />
+<script
+  type="text/javascript"
+  src="https://www.bing.com/api/maps/mapcontrol?callback=initBingMap"
+  async
+  defer
+></script>
+
+<script>
+  function initBingMap() {
+    var map = new Microsoft.Maps.Map(document.getElementById("map"), {
+      center: new Microsoft.Maps.Location(23.777176, 90.399452),
+      zoom: 11,
+    });
+
+    var options = {
+      uriConstructor:
+        "https://tiles.aqicn.org/tiles/usepa-aqi//{zoom}/{x}/{y}.png?token=8f45e008c92e9c7ae7236be05cfd80103152b2e8",
+      minZoom: 1,
+      maxZoom: 15,
+    };
+    var waqiTileSource = new Microsoft.Maps.TileSource(options);
+    var waqiTilelayer = new Microsoft.Maps.TileLayer({
+      mercator: waqiTileSource,
+    });
+    map.layers.insert(waqiTilelayer);
+  }
+</script>
