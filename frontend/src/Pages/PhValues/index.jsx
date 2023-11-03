@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./styles.css";
-import Map from "../map/Map.jsx"
-
+import Map from "../map/Map.jsx";
 
 const cityCoordinates = [
   { name: "Lahore", latitude: 31.560078, longitude: 74.33589 },
@@ -19,6 +18,7 @@ const cityCoordinates = [
 const DataFetcher = () => {
   const [cityData, setCityData] = useState([]);
   const [filteredCityData, setFilteredCityData] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +27,7 @@ const DataFetcher = () => {
       for (const city of cityCoordinates) {
         try {
           const response = await axios.post(
-            "https://airquality.googleapis.com/v1/currentConditions:lookup?key=AIzaSyANZdRNWC8fTqkV80xgZb8K4L7VPFrDDuY",
+            "https://airquality.googleapis.com/v1/currentConditions:lookup?key=AIzaSyANZdRNWC8fTqkV80xgZb8K4L7VPFrDDuY", // Replace with your API key
             {
               universalAqi: true,
               location: {
@@ -45,7 +45,6 @@ const DataFetcher = () => {
 
           const airQualityData = response.data;
 
-          // Extract the required information from the response
           const pollutants = airQualityData.pollutants.map((pollutant) => ({
             code: pollutant.code,
             value: pollutant.concentration.value,
@@ -63,25 +62,40 @@ const DataFetcher = () => {
       }
 
       setCityData(updatedCityData);
-      setFilteredCityData(updatedCityData); // Initialize the filtered data with all cities.
+      setFilteredCityData(updatedCityData);
     };
 
     fetchData();
   }, []);
-
+  const handleCityClick = (cityInfo) => {
+    const selectedCity = cityCoordinates.find((city) => city.name === cityInfo.name);
+  
+    if (selectedCity) {
+      setSelectedCity({ ...cityInfo, latitude: selectedCity.latitude, longitude: selectedCity.longitude });
+    } else {
+      console.error(`City "${cityInfo.name}" not found in the initial array`);
+    }
+  };
+  
+  
   const handleCitySearch = (searchTerm) => {
     if (searchTerm === "") {
-      setFilteredCityData(cityData); // Show all cities if the search term is empty.
+      setFilteredCityData(cityData);
     } else {
-      // Filter the cities based on the search term.
       const filteredCities = cityData.filter((city) =>
         city.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
       setFilteredCityData(filteredCities);
     }
   };
+
+  const closeCityDetails = () => {
+    setSelectedCity(null);
+  };
+
   const latitude = 23.777176;
   const longitude = 90.399452;
+
   return (
     <div>
       <h2>City Air Quality Data</h2>
@@ -92,28 +106,36 @@ const DataFetcher = () => {
       />
       <ul>
         {filteredCityData.map((cityInfo) => (
-          <li key={cityInfo.name}>
+          <li key={cityInfo.name} onClick={() => handleCityClick(cityInfo)} style={{ cursor: "pointer" }}>
             <strong>City Name:</strong> {cityInfo.name}
-            <br />
-            <strong>Index Code:</strong> {cityInfo.indexCode}
-            <br />
-            <strong>AQI:</strong> {cityInfo.aqi}
-            <br />
-            <strong>Pollutants:</strong>
-            <ul>
-              {cityInfo.pollutants.map((pollutant, index) => (
-                <li key={index}>
-                  <strong>Code:</strong> {pollutant.code}
-                  <br />
-                  <strong>Value:</strong> {pollutant.value}
-                </li>
-              ))}
-            </ul>
-            <Map lat={latitude} lng={longitude} />
           </li>
         ))}
-        
       </ul>
+      {selectedCity && (
+  <div className="popup">
+    <button className="close-button" onClick={closeCityDetails}> X </button>
+    <strong>City Name:</strong> {selectedCity.name}
+    <br />
+    <strong>Longitude:</strong> {selectedCity.longitude}
+    <br />
+    <strong>Index Code:</strong> {selectedCity.indexCode}
+    <br />
+    <strong>AQI:</strong> {selectedCity.aqi}
+    <br />
+    <strong>Pollutants:</strong>
+    <ul>
+      {selectedCity.pollutants.map((pollutant, index) => (
+        <li key={index}>
+          <strong>Code:</strong> {pollutant.code}
+          <br />
+          <strong>Value:</strong> {pollutant.value}
+        </li>
+      ))}
+    </ul>
+    <Map lat={selectedCity.latitude} lng={selectedCity.longitude} />
+  </div>
+)}
+
     </div>
   );
 };
