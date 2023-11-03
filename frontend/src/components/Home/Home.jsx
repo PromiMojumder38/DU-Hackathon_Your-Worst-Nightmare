@@ -12,16 +12,16 @@ function Home() {
           </div>
           <ul className={styles["nav-area"]}>
             <li>
-              <a href="/home">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>
-              <a href="/home">About</a>
+              <a href="/top">Top 10</a>
             </li>
             {/* <li>
               <a href="/home">Services</a>
             </li> */}
             <li>
-              <a href="/home">Contact</a>
+              <a href="/ph">Search Cities</a>
             </li>
 {/* 
             <li>
@@ -30,9 +30,14 @@ function Home() {
               </Link>
             </li> */}
 
-            <li>
-              <Link to="/aqi" className={styles["ap"]}>
+<li>
+              <Link to="/aqi">
                 See List 
+              </Link>
+            </li>
+            <li>
+              <Link to="/map">
+                See Map
               </Link>
             </li>
           </ul>

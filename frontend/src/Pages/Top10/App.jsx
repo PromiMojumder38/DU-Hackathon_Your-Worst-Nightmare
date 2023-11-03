@@ -17,21 +17,41 @@ function App() {
       });
   }, []);
 
+  // Define an inline CSS object
+  const tableStyle = {
+    borderCollapse: 'collapse',
+    width: '50%',
+    margin: '0 auto',
+  };
+
+  const cellStyle = {
+    padding: '10px',
+    border: '1px solid #ddd',
+  };
+
+  const evenRowStyle = {
+    backgroundColor: '#f2f2f2',
+  };
+
+  const oddRowStyle = {
+    backgroundColor: '#fff',
+  };
+
   return (
     <div className="App">
-      <h1>Top 10 Cities by AQI (Air Quality Index)</h1>
-      <table>
+      <h1 style={{ color: '#333' }}>Top 10 Cities by AQI (Air Quality Index)</h1>
+      <table style={tableStyle}>
         <thead>
           <tr>
-            <th>City</th>
-            <th>AQI (US)</th>
+            <th style={cellStyle}>City</th>
+            <th style={cellStyle}>AQI (US)</th>
           </tr>
         </thead>
         <tbody>
           {topCities.map((city, index) => (
-            <tr key={index}>
-              <td>{city.city}</td>
-              <td>{city.aqi}</td>
+            <tr key={index} style={index % 2 === 0 ? evenRowStyle : oddRowStyle}>
+              <td style={cellStyle}>{city.city}</td>
+              <td style={cellStyle}>{city.aqi}</td>
             </tr>
           ))}
         </tbody>

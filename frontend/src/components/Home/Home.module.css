@@ -33,7 +33,6 @@
     color: #fff;
     text-decoration: none;
     padding: 5px 20px;
-    font-family: poppins;
     font-size: 16px;
     text-transform: uppercase;
 }
@@ -42,32 +41,11 @@
     color: #fff;
     text-decoration: none;
     padding: 5px 20px;
-    font-family: poppins;
     font-size: 16px;
     text-transform: uppercase;
 }
 
-.nav-area li .ap {
-    background: #fff;
-    color: #333;
-    text-decoration: none;
-    padding: 5px 20px;
-    font-family: poppins;
-    font-size: 16px;
-    text-transform: uppercase;
-}
 
-.nav-area li .ap:hover {
-    background: #8ef1e1;
-    color: #333;
-}
-
-
-
-.nav-area li a:hover {
-    background: #fff;
-    color: #333;
-}
 
 .logo {
     float: left;
