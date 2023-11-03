@@ -4,6 +4,7 @@ import AQI from "./Pages/AQIDetails/index";
 import Top from "./Pages/Top10/App";
 import Ph from "./Pages/PhValues/index";
 import Map from "./Pages/map/index";
+import Gdp from "./Pages/GDP/App";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -16,6 +17,8 @@ function App() {
         <Route path="/top" element={<Top />}></Route>
         <Route path="/ph" element={<Ph />}></Route>
         <Route path="/map" element={<Map />}></Route>
+        <Route path="/gdp" element={<Gdp />}></Route>
+        <Route path="/app/:countryName" element={<Gdp />} />
       </Routes>
     </BrowserRouter>
   );

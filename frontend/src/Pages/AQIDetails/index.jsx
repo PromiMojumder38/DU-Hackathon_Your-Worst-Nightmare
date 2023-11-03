@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import axios from "axios";
 
+import { useNavigate } from "react-router-dom";
+
 function AQI() {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [countries, setCountries] = useState([]);
   const [states, setStates] = useState([]);
@@ -57,6 +60,13 @@ function AQI() {
       });
   };
 
+  const handleSeeMoreClick = (countryName) => {
+    // Redirect to the App component with the countryName parameter
+
+    // Redirect to the App component with the countryName parameter
+    navigate(`/app/${countryName}`);
+  };
+
   const fetchCityData = (city) => {
     setSelectedCity(city);
     axios
@@ -75,22 +85,37 @@ function AQI() {
     {
       title: "Countries",
       dataIndex: "country",
-      width: 50,
+      width: 300,
     },
     {
-      title: "See More",
+      title: "States",
       render: (text, record) => (
         <div className="autorickshawButton">
-          <Button type="primary" onClick={() => fetchStatesForCountry(record.country)}>
+          <Button
+            type="primary"
+            onClick={() => fetchStatesForCountry(record.country)}
+          >
             See More
           </Button>
         </div>
       ),
       width: 50,
     },
+    {
+      title: "Social Economic Factors",
+      render: (text, record) => (
+        <div className="autorickshawButton">
+          <Button
+            type="primary"
+            onClick={() => handleSeeMoreClick(record.country)}
+          >
+           Check Here
+          </Button>
+        </div>
+      ),
+      width: 50,
+    },
   ];
-
-
 
   return (
     <div className="App">
@@ -118,27 +143,30 @@ function AQI() {
             {states.map((state) => (
               <div key={state.state}>
                 {state.state}
-                <Button type="primary" onClick={() => fetchCitiesForState(state.state)}>
+                <Button
+                  type="primary"
+                  onClick={() => fetchCitiesForState(state.state)}
+                >
                   See Cities
                 </Button>
               </div>
             ))}
           </Modal>
           <Modal
-  title={`Cities in ${selectedState}, ${selectedCountry}`}
-  visible={isSecondModalVisible}
-  onOk={() => setIsSecondModalVisible(false)}
-  onCancel={() => setIsSecondModalVisible(false)}
->
-  {cities.map((city) => (
-    <div key={city.city}>
-      {city.city}
-      <Button type="primary" onClick={() => fetchCityData(city.city)}>
-        See More
-      </Button>
-    </div>
-  ))}
-</Modal>
+            title={`Cities in ${selectedState}, ${selectedCountry}`}
+            visible={isSecondModalVisible}
+            onOk={() => setIsSecondModalVisible(false)}
+            onCancel={() => setIsSecondModalVisible(false)}
+          >
+            {cities.map((city) => (
+              <div key={city.city}>
+                {city.city}
+                <Button type="primary" onClick={() => fetchCityData(city.city)}>
+                  See More
+                </Button>
+              </div>
+            ))}
+          </Modal>
 
           <Modal
             title={`City: ${selectedCity}, ${selectedState}, ${selectedCountry}`}
@@ -148,29 +176,27 @@ function AQI() {
           >
             {cityData && (
               <div className="dataContainer">
-              <div className="dataColumn">
-                <p>Pollution Data:</p>
-                <p>Timestamp: {cityData.current.pollution.ts}</p>
-                <p>AQI US: {cityData.current.pollution.aqius}</p>
-                <p>Main US: {cityData.current.pollution.mainus}</p>
-                <p>AQI CN: {cityData.current.pollution.aqicn}</p>
-                <p>Main CN: {cityData.current.pollution.maincn}</p>
+                <div className="dataColumn">
+                  <p>Pollution Data:</p>
+                  <p>Timestamp: {cityData.current.pollution.ts}</p>
+                  <p>AQI US: {cityData.current.pollution.aqius}</p>
+                  <p>Main US: {cityData.current.pollution.mainus}</p>
+                  <p>AQI CN: {cityData.current.pollution.aqicn}</p>
+                  <p>Main CN: {cityData.current.pollution.maincn}</p>
+                </div>
+                <div className="dataColumn">
+                  <p>Weather Data:</p>
+                  <p>Timestamp: {cityData.current.weather.ts}</p>
+                  <p>Temperature (°C): {cityData.current.weather.tp}</p>
+                  <p>Pressure (hPa): {cityData.current.weather.pr}</p>
+                  <p>Humidity : {cityData.current.weather.hu} %</p>
+                  <p>Wind Speed : {cityData.current.weather.ws} m/s</p>
+                  <p>Wind Direction (°): {cityData.current.weather.wd}</p>
+                  <p>Icon: {cityData.current.weather.ic}</p>
+                </div>
               </div>
-              <div className="dataColumn">
-                <p>Weather Data:</p>
-                <p>Timestamp: {cityData.current.weather.ts}</p>
-                <p>Temperature (°C): {cityData.current.weather.tp}</p>
-                <p>Pressure (hPa): {cityData.current.weather.pr}</p>
-                <p>Humidity : {cityData.current.weather.hu} %</p>
-                <p>Wind Speed : {cityData.current.weather.ws} m/s</p>
-                <p>Wind Direction (°): {cityData.current.weather.wd}</p>
-                <p>Icon: {cityData.current.weather.ic}</p>
-              </div>
-            </div>
-            
             )}
           </Modal>
-          
         </div>
       </div>
     </div>

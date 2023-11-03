@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-function DataTables({ countryCode }) {
+function DataTables({ countryCode, countryName }) {
   const tableUrls = [
     `https://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.MKTP.CD?format=json`,
     `https://api.worldbank.org/v2/country/${countryCode}/indicator/NY.GDP.PCAP.CD?format=json`,
