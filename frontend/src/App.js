@@ -7,6 +7,10 @@ import Home from "./components/Home/Home";
 // import Update from "./components/CRUD/UpdateStudent";
 
 import AQI from "./Pages/AQIDetails/index";
+import Top from "./Pages/Top10/App"
+import Ph from "./Pages/PhValues/index";
+
+import Map from "./Pages/map/index";
 
 
 
@@ -20,6 +24,12 @@ function App() {
         <Route path="/" element={<Home />} />
         
         <Route path="/aqi" element={<AQI />}></Route>
+        <Route path="/top" element={<Top />}></Route>
+        <Route path="/ph" element={<Ph />}></Route>
+        <Route path="/map" element={<Map/>}></Route>
+
+
+    
     
       </Routes>
     </BrowserRouter>
