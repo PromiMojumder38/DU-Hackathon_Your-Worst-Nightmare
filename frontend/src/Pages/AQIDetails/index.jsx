@@ -14,6 +14,7 @@ function AQI() {
   const [isFirstModalVisible, setIsFirstModalVisible] = useState(false);
   const [isSecondModalVisible, setIsSecondModalVisible] = useState(false);
   const [cityData, setCityData] = useState(null);
+  const keyy = "";
 
   useEffect(() => {
     axios
