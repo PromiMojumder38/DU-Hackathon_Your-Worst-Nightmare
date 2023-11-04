@@ -34,41 +34,87 @@ function DataTables({ countryCode }) {
       });
   };
 
+  const tableContainerStyle = {
+    padding: "20px", // Add your desired padding
+  };
+
+  const buttonStyle = {
+    backgroundColor: "#007bff",
+    color: "#fff",
+    padding: "10px 20px",
+    border: "none",
+    borderRadius: "4px",
+    cursor: "pointer",
+    marginBottom: "20px", // Add margin to create space
+  };
+
+  const tableStyle = {
+    width: "100%",
+    borderCollapse: "collapse",
+    marginBottom: "20px", // Add margin to create space
+  };
+
+  const thStyle = {
+    backgroundColor: "#f2f2f2",
+    padding: "10px",
+    textAlign: "center",
+  };
+
+  const tdStyle = {
+    border: "1px solid #ddd",
+    padding: "10px",
+  };
+
+  const chartContainerStyle = {
+    marginBottom: "20px", // Add margin to create space
+  };
+
+  const chartTitleStyle = {
+    margin: "10px 0",
+  };
+
   return (
-    <div style={{ padding : 90 }}>
-      <button onClick={handleFetchData}>Fetch Data</button>
+    <div style={tableContainerStyle}>
+      <button onClick={handleFetchData} style={buttonStyle}>
+        Fetch Data
+      </button>
       {data[0].length > 0 ? (
         <div>
           {tableUrls.map((url, index) => (
-            <div key={index}>
-              <h2>Data Table {index + 1}</h2>
-              <table>
+            <div key={index} style={chartContainerStyle}>
+              <h2 style={chartTitleStyle}>Data Table {index + 1}</h2>
+              <table style={tableStyle}>
                 <thead>
                   <tr>
-                    <th>Indicator</th>
-                    <th>Date</th>
-                    <th>Value</th>
+                    <th style={thStyle}>Indicator</th>
+                    <th style={thStyle}>Date</th>
+                    <th style={thStyle}>Value</th>
                   </tr>
                 </thead>
                 <tbody>
                   {data[index].map((item, rowIndex) => (
                     <tr key={rowIndex}>
-                      <td>{item.indicator.value}</td>
-                      <td>{item.date}</td>
-                      <td>{item.value.toFixed(2)}</td>
+                      <td style={tdStyle}>{item.indicator.value}</td>
+                      <td style={tdStyle}>{item.date}</td>
+                      <td style={tdStyle}>{item.value.toFixed(2)}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
-              <h2>Bar Chart {index + 1}</h2>
-              <ResponsiveContainer width="80%" height={300} >
-                <BarChart data={data[index]} >
+              <h2 style={chartTitleStyle}>Bar Chart {index + 1}</h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={data[index]}>
                   <CartesianGrid strokeDasharray="4 4" />
                   <XAxis dataKey="date" />
-                  <YAxis dataKey="value" tickFormatter={(value) => parseInt(value, 10).toString().slice(0, 3)} />
+                  <YAxis
+                    dataKey="value"
+                    tickFormatter={(value) =>
+                      parseInt(value, 10).toString().slice(0, 3)
+                    }
+                  />
                   <Tooltip />
                   <Legend />
-                  <Bar dataKey="value" fill="#8884d8" name="Value"/>
+                  <Bar dataKey="value" fill="#8884d8" name="Value" />
                 </BarChart>
               </ResponsiveContainer>
             </div>

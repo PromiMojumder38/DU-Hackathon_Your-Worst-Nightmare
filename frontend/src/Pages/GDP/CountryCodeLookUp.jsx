@@ -1,5 +1,21 @@
 import React, { useState } from 'react';
 
+const inputStyle = {
+  padding: '8px',
+  border: '1px solid #ccc',
+  borderRadius: '4px',
+  marginRight: '8px',
+};
+
+const buttonStyle = {
+  padding: '8px 16px',
+  background: '#007bff',
+  color: '#fff',
+  border: 'none',
+  borderRadius: '4px',
+  cursor: 'pointer',
+};
+
 function CountryCodeLookup({ onCountryCodeChange, countryName }) {
   const [inputCountryName, setInputCountryName] = useState(countryName || '');
 
@@ -31,10 +47,12 @@ function CountryCodeLookup({ onCountryCodeChange, countryName }) {
   return (
     <div>
       <label>
-        Enter Country Name:
-        <input type="text" value={inputCountryName} onChange={handleChange} />
+        <p style={{ textAlign: "left" }}>Enter Country Name:</p>
+        <input type="text" value={inputCountryName} onChange={handleChange} style={inputStyle} />
       </label>
-      <button onClick={handleFetchCountryCode}>Fetch Country Code</button>
+      <button onClick={handleFetchCountryCode} style={buttonStyle}>
+        Fetch Country Code
+      </button>
     </div>
   );
 }
