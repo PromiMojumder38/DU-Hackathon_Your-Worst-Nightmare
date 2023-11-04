@@ -5,7 +5,7 @@ function App() {
   const [topCities, setTopCities] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:3002/top-cities')
+    axios.get('http://localhost:3002/top-citiesLow')
       .then((response) => {
         setTopCities(response.data);
         console.log(response.data);
@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 style={{ color: '#333' }}>Top 10 Polluted Cities by AQI (Air Quality Index)</h1>
+      <h1 style={{ color: '#333' }}>Top 10 Cleanest Cities by AQI (Air Quality Index)</h1>
       <table style={tableStyle}>
         <thead>
           <tr>
