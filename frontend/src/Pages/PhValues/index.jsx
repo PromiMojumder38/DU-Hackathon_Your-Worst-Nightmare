@@ -110,17 +110,32 @@ const DataFetcher = () => {
 
     fetchData();
   }, []);
+
+  // Define a function to map AQI ranges to comments
+  const getAqiComment = (aqi) => {
+    if (aqi >= 0 && aqi <= 50) return "Good";
+    else if (aqi >= 51 && aqi <= 100) return "Moderate";
+    else if (aqi >= 101 && aqi <= 150) return "Unhealthy for Sensitive Groups";
+    else if (aqi >= 151 && aqi <= 200) return "Unhealthy";
+    else if (aqi >= 201 && aqi <= 300) return "Very Unhealthy";
+    else return "Hazardous";
+  };
+
   const handleCityClick = (cityInfo) => {
     const selectedCity = cityCoordinates.find((city) => city.name === cityInfo.name);
-  
+
     if (selectedCity) {
-      setSelectedCity({ ...cityInfo, latitude: selectedCity.latitude, longitude: selectedCity.longitude });
+      setSelectedCity({
+        ...cityInfo,
+        latitude: selectedCity.latitude,
+        longitude: selectedCity.longitude,
+        aqiComment: getAqiComment(cityInfo.aqi),
+      });
     } else {
       console.error(`City "${cityInfo.name}" not found in the initial array`);
     }
   };
-  
-  
+
   const handleCitySearch = (searchTerm) => {
     if (searchTerm === "") {
       setFilteredCityData(cityData);
@@ -136,7 +151,6 @@ const DataFetcher = () => {
     setSelectedCity(null);
   };
 
-
   return (
     <div>
       <h2>City Air Quality Data</h2>
@@ -147,36 +161,40 @@ const DataFetcher = () => {
       />
       <ul className="PHul">
         {filteredCityData.map((cityInfo) => (
-          <li className="PHli" key={cityInfo.name} onClick={() => handleCityClick(cityInfo)} style={{ cursor: "pointer" }}>
+          <li
+            className="PHli"
+            key={cityInfo.name}
+            onClick={() => handleCityClick(cityInfo)}
+            style={{ cursor: "pointer" }}
+          >
             <strong>City Name:</strong> {cityInfo.name}
           </li>
         ))}
       </ul>
       {selectedCity && (
-  <div className="popup">
-    <button className="close-button" onClick={closeCityDetails}> X </button>
-    <strong>City Name:</strong> {selectedCity.name}
-    <br />
-    <strong>Longitude:</strong> {selectedCity.longitude}
-    <br />
-    <strong>Index Code:</strong> {selectedCity.indexCode}
-    <br />
-    <strong>AQI:</strong> {selectedCity.aqi}
-    <br />
-    <strong>Pollutants:</strong>
-    <ul className="PHul">
-      {selectedCity.pollutants.map((pollutant, index) => (
-        <li className="PHli" key={index}>
-          <strong>Code:</strong> {pollutant.code}
+        <div className="popup">
+          <button className="close-button" onClick={closeCityDetails}>
+            X
+          </button>
+          <strong>City Name:</strong> {selectedCity.name}
           <br />
-          <strong>Value:</strong> {pollutant.value}
-        </li>
-      ))}
-    </ul>
-    <Map lat={selectedCity.latitude} lng={selectedCity.longitude} />
-  </div>
-)}
-
+          <strong>Longitude:</strong> {selectedCity.longitude}
+          <br />
+          <strong>Index Code:</strong> {selectedCity.indexCode}
+          <br />
+          <strong>Pollutants:</strong>
+          <ul className="PHul">
+            {selectedCity.pollutants.map((pollutant, index) => (
+              <li className="PHli" key={index}>
+                <strong>Code:</strong> {pollutant.code}
+                <br />
+                <strong>Value:</strong> {pollutant.value}
+              </li>
+            ))}
+          </ul>
+          <Map lat={selectedCity.latitude} lng={selectedCity.longitude} />
+        </div>
+      )}
     </div>
   );
 };
