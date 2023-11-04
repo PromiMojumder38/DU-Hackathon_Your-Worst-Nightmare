@@ -21,7 +21,8 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "react-to-pdf": "^1.0.1",
-    "react-to-print": "^2.14.15"
+    "react-to-print": "^2.14.15",
+    "recharts": "^2.9.2"
   },
   "scripts": {
     "start": "react-scripts start",
