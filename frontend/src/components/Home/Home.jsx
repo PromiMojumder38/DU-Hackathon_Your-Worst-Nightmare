@@ -15,10 +15,10 @@ function Home() {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href="/top">Top 10 Polluted Cities</a>
+              <a href="/top">Top Polluted Cities</a>
             </li>
             <li>
-              <a href="/low">Top 10 Cleanest Cities</a>
+              <a href="/low">Top Cleanest Cities</a>
             </li>
             {/* <li>
               <a href="/home">Services</a>

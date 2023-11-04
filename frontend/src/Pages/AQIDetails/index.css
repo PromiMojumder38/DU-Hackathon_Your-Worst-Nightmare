@@ -195,3 +195,23 @@
   margin: 5px;
 }
 
+/* Add these classes to your CSS stylesheet */
+.green-background {
+  background-color: green;
+}
+
+.orange-background {
+  background-color: orange;
+}
+
+.red-background {
+  background-color: rgb(31, 1, 1);
+}
+
+.violet-background {
+  background-color: violet;
+}
+
+.brown-background {
+  background-color: rgb(203, 56, 56);
+}

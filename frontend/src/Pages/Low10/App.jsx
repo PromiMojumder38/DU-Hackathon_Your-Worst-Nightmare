@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1 style={{ color: '#333' }}>Top 10 Cleanest Cities by AQI (Air Quality Index)</h1>
+      <h1 style={{ color: '#333' , padding: '30px'}}>Top 10 Cleanest Cities by AQI (Air Quality Index)</h1>
       <table style={tableStyle}>
         <thead>
           <tr>

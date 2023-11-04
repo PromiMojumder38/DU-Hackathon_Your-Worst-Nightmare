@@ -109,13 +109,27 @@ function AQI() {
             type="primary"
             onClick={() => handleSeeMoreClick(record.country)}
           >
-           Check Here
+            Check Here
           </Button>
         </div>
       ),
       width: 50,
     },
   ];
+
+  function getBackgroundColorClass(aqius) {
+    if (aqius >= 0 && aqius <= 50) {
+      return "green-background";
+    } else if (aqius >= 51 && aqius <= 100) {
+      return "orange-background";
+    } else if (aqius >= 101 && aqius <= 150) {
+      return "red-background";
+    } else if (aqius >= 151 && aqius <= 200) {
+      return "violet-background";
+    } else {
+      return "brown-background";
+    }
+  }
 
   return (
     <div className="App">
@@ -175,7 +189,11 @@ function AQI() {
             onCancel={() => setIsSecondModalVisible(false)}
           >
             {cityData && (
-              <div className="dataContainer">
+              <div
+                className={`dataContainer ${getBackgroundColorClass(
+                  cityData.current.pollution.aqius
+                )}`}
+              >
                 <div className="dataColumn">
                   <p>Pollution Data:</p>
                   <p>Timestamp: {cityData.current.pollution.ts}</p>
