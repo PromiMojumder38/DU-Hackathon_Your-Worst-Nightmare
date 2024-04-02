@@ -1,7 +1,7 @@
 
 <div align = "center">
 
-# ☁️ Atoms-Sense  ☁️
+# ☁️ Atmos-Sense  ☁️
 ###  ✌️ Real-Time Air Quality Data  & GeoData and API-Powered Website ✌️
 
 ![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
